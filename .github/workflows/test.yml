@@ -1,0 +1,17 @@
+name: test
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Version file
+        id: create_version_file
+        run: |
+          touch ./test.md
+          echo version=1.0.0 >> ./test.md
+          echo commitSha=${{ github.sha }} >> ./test.md
+          echo repositoryUrl=${{ github.repositoryUrl }} >> ./test.md
+          cat ./test.md
